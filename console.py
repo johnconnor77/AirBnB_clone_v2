@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """This is the console for AirBnB"""
 import cmd
+import shlex
+from ast import literal_eval
 from models import storage
 from datetime import datetime
 from models.base_model import BaseModel
@@ -10,7 +12,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-from shlex import split
 
 
 class HBNBCommand(cmd.Cmd):
@@ -32,19 +33,39 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program at end of file"""
         return True
 
-    def do_create(self, line):
+    def do_create(self, arg):
         """Creates a new instance of BaseModel, saves it
         Exceptions:
             SyntaxError: when there is no args given
             NameError: when there is no object taht has the name
         """
         try:
-            if not line:
+            if not arg:
                 raise SyntaxError()
-            my_list = line.split(" ")
-            obj = eval("{}()".format(my_list[0]))
+
+            args = shlex.split(arg)
+            obj = eval(args[0])()
+
+            for i in args[1:]:
+
+                try:
+                    key = i.split('=')[0]
+                    value = i.split('=')[1]
+
+                    if hasattr(obj, key):
+                        value = value.replace("_", " ")
+                        try:
+                            value = literal_eval(value)
+                        except:
+                            pass
+
+                        setattr(obj, key, value)
+                except:
+                    pass
+
             obj.save()
-            print("{}".format(obj.id))
+            print(obj.id)
+
         except SyntaxError:
             print("** class name missing **")
         except NameError:
@@ -210,15 +231,15 @@ class HBNBCommand(cmd.Cmd):
         new_list.append(args[0])
         try:
             my_dict = eval(
-                args[1][args[1].find('{'):args[1].find('}')+1])
+                args[1][args[1].find('{'):args[1].find('}') + 1])
         except Exception:
             my_dict = None
         if isinstance(my_dict, dict):
-            new_str = args[1][args[1].find('(')+1:args[1].find(')')]
+            new_str = args[1][args[1].find('(') + 1:args[1].find(')')]
             new_list.append(((new_str.split(", "))[0]).strip('"'))
             new_list.append(my_dict)
             return new_list
-        new_str = args[1][args[1].find('(')+1:args[1].find(')')]
+        new_str = args[1][args[1].find('(') + 1:args[1].find(')')]
         new_list.append(" ".join(new_str.split(", ")))
         return " ".join(i for i in new_list)
 
