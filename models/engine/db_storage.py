@@ -65,7 +65,8 @@ class DBStorage:
         """
             Add the object at the current database session
         """
-        self.__session.add(obj)
+        if obj:
+            self.__session.add(obj)
 
     def save(self):
         """
