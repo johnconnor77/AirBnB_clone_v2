@@ -1,7 +1,14 @@
 #!/usr/bin/python3
-'''
+"""
     Define class DBStorage
-'''
+"""
+#  ██████╗ ██████╗ ███████╗████████╗ ██████╗ ██████╗  █████╗  ██████╗ ███████╗
+#  ██╔══██╗██╔══██╗██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗██╔════╝ ██╔════╝
+#  ██║  ██║██████╔╝███████╗   ██║   ██║   ██║██████╔╝███████║██║  ███╗█████╗
+#  ██║  ██║██╔══██╗╚════██║   ██║   ██║   ██║██╔══██╗██╔══██║██║   ██║██╔══╝
+#  ██████╔╝██████╔╝███████║   ██║   ╚██████╔╝██║  ██║██║  ██║╚██████╔╝███████╗
+#  ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝
+
 
 from os import getenv
 import models
@@ -11,16 +18,17 @@ from models.base_model import Base
 
 
 class DBStorage:
-    '''
-        Serializes instances to JSON file and deserializes to JSON file.
-    '''
+    """
+        Class for Database Storage MySQL
+    """
+
     __engine = None
     __session = None
 
     def __init__(self):
-        '''
-            create new instance of DBStorage
-        '''
+        """
+            Instance for Database Storage
+        """
         user = getenv('HBNB_MYSQL_USER')
         pwd = getenv('HBNB_MYSQL_PWD')
         host = getenv('HBNB_MYSQL_HOST')
