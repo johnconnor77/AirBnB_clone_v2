@@ -48,7 +48,6 @@ class DBStorage:
         db_dict = {}
 
         if cls is not None:
-            print(models.classes(cls))
             input_db = self.__session.query(models.classes[cls]).all()
             for obj in input_db:
                 # under the hood, sqlalchemy converts entry as input
