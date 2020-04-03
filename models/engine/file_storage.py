@@ -82,7 +82,8 @@ class FileStorage:
         """
             delete obj from __opbjects
         """
-        class_name = obj.__class__.__name__
-        key_dict = class_name + "." + obj.id
-        del self.__objects[key_dict]
-        self.save()
+        if obj:
+            class_name = obj.__class__.__name__
+            key_dict = class_name + "." + obj.id
+            del self.__objects[key_dict]
+            self.save()
