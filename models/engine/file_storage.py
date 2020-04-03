@@ -1,5 +1,15 @@
 #!/usr/bin/python3
 """This is the file storage class for AirBnB"""
+
+#  ███████╗██╗██╗     ███████╗    ███████╗████████╗ ██████╗ ██████╗  █████╗  ██████╗ ███████╗
+#  ██╔════╝██║██║     ██╔════╝    ██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗██╔════╝ ██╔════╝
+#  █████╗  ██║██║     █████╗      ███████╗   ██║   ██║   ██║██████╔╝███████║██║  ███╗█████╗
+#  ██╔══╝  ██║██║     ██╔══╝      ╚════██║   ██║   ██║   ██║██╔══██╗██╔══██║██║   ██║██╔══╝
+#  ██║     ██║███████╗███████╗    ███████║   ██║   ╚██████╔╝██║  ██║██║  ██║╚██████╔╝███████╗
+#  ╚═╝     ╚═╝╚══════╝╚══════╝    ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝
+#
+
+
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -29,20 +39,16 @@ class FileStorage:
         if cls is None:
             return self.__objects
 
-        nameclass = cls.__class__.__name__
+        class_name = cls.__name__
 
         new_dict = {}
 
         for key, val in self.__objects.items():
 
-            if nameclass in key:
+            if class_name in key:
                 new_dict[key] = val
 
         return new_dict
-
-
-
-
 
     def new(self, obj):
         """sets __object to given obj
@@ -77,8 +83,8 @@ class FileStorage:
         """
             delete obj from __opbjects
         """
-        nameclass=obj.__class__.__name__
-        key_dict = nameclass + "." + obj.id
+        class_name = obj.__class__.__name__
+        key_dict = class_name + "." + obj.id
         del self.__objects[key_dict]
         self.save()
 
