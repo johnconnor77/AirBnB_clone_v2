@@ -57,10 +57,9 @@ class DBStorage:
                 db_dict[key] = obj
         else:
             for key, value in models.classes.items():
-                if key != "BaseModel":
-                    for obj in self.__session.query(value).all():
-                        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-                        db_dict[key] = obj
+                for obj in self.__session.query(value).all():
+                    key = "{}.{}".format(obj.__class__.__name__, obj.id)
+                    db_dict[key] = obj
         return db_dict
 
     def new(self, obj):
