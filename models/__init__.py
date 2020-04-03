@@ -13,7 +13,7 @@ from models.review import Review
 from os import getenv
 
 classes = {"State": State,
-           "City": City}
+           "City": City, "User": User}
 
 if getenv("HBNB_TYPE_STORAGE") == "db":
     storage = DBStorage()
