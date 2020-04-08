@@ -43,33 +43,7 @@ Commands | Description | Usage
 **all** | Prints all string representation of all instances based or not on the class name | **all** or **all** \<class_name class_id\>
 **update** | Updates an instance based on the class name and id by adding or updating attribute | **update** \<class_name class_id key value\>
 
-#### Create
-`create <class name>`
-Ex:
-`create BaseModel`
-
-#### Show
-`show <class name> <object id>`
-Ex:
-`show User my_id`
-
-#### Destroy
-`destroy <class name> <object id>`
-Ex:
-`destroy Place my_place_id`
-
-#### All
-`all` or `all <class name>`
-Ex:
-`all` or `all State`
-
-#### Quit
-`quit` or `EOF`
-
-#### Help
-`help` or `help <command>`
-Ex:
-`help` or `help quit`
+#### Note
 
 Additionally, the console supports `<class name>.<command>(<parameters>)` syntax.
 Ex:
