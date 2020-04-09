@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #Write a Bash script that sets up your web servers
 #for the deployment of web_static.
 # 1 step: Install Nginx if it not already installed
