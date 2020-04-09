@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #Write a Bash script that sets up your web servers
 #for the deployment of web_static.
 # 1 step: Install Nginx if it not already installed
@@ -10,11 +10,11 @@ sudo mkdir -p /data/web_static/releases/test/
 # 3 step: Create a fake HTML file 
 # /data/web_static/releases/test/index.html 
 # (with simple content, to test your Nginx configuration)
-sudo echo -e  "<!DOCTYPE html>\
-<html lang=\"en"\>
+sudo echo -e "<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset=\"UTF-8"\>
-    <meta name=\"viewport"\ content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello to all</title>
 </head>
 <body>
