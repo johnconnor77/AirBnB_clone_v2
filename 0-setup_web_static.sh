@@ -10,17 +10,17 @@ sudo mkdir -p /data/web_static/releases/test/
 # 3 step: Create a fake HTML file 
 # /data/web_static/releases/test/index.html 
 # (with simple content, to test your Nginx configuration)
-sudo echo -e "<!DOCTYPE html>
-<html lang="en">
+sudo echo -e  "<!DOCTYPE html>\
+<html lang=\"en"\>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset=\"UTF-8"\>
+    <meta name=\"viewport"\ content="width=device-width, initial-scale=1.0">
     <title>Hello to all</title>
 </head>
 <body>
 <h1>Config web server</h1>
 </body>
-</html>"  /data/web_static/releases/test/index.html
+</html>" | sudo tee /data/web_static/releases/test/index.html
 # 4 step: Create a symbolic link /data/web_static/current
 # linked to the /data/web_static/releases/test/ folder.
 # If the symbolic link already exists, it should be deleted
