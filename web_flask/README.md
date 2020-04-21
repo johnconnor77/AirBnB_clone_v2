@@ -46,3 +46,5 @@ Here are the most used with Flask:
 * flask-Sqlalchemy: Used to generate the data model.
 * flask-login: Used for user and password authentication.
 Flask is an alternative to building Web Apps with Python, it has a good learning curve and can be learned very quickly.
+
+[more info](https://openwebinars.net/blog/que-es-flask/)
