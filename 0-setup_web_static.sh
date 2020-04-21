@@ -32,6 +32,7 @@ sudo chown -R  ubuntu:ubuntu /data
 # /data/web_static/current/ to hbnb_static (ex:
 # https://mydomainname.tech/hbnb_static). 
 # Use alias inside your Nginx configuration
-sudo sed -i "/# Only/ i location /hbnb_static {\nalias /data/web_static/current;\n}" /etc/nginx/sites-enabled/default
+static="\\\tlocation /hbnb_static {\n\talias /data/web_static/current/;\n}"
+sudo sed -i "40i $static" /etc/nginx/sites-enabled/default
 # Don’t forget to restart Nginx after updating the configuration:
 sudo service nginx restart
