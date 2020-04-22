@@ -19,10 +19,10 @@ def do_pack():
     """
     time = datetime.now().strftime("%Y%m%d%H%M%S")
     local("mkdir -p versions")
-    name = "versions/web_static_{}.tgz".format(time)
-    tar_status = local("tar -cvzf {} web_static".format(name))
+    path_name = "versions/web_static_{}.tgz".format(time)
+    tar_status = local("tar -cvzf {} web_static".format(path_name))
+    return path_name if tar_status.succeeded else None
 
-    if tar_status.succeeded:
-        return name
-    else:
-        return None
+
+if __name__ == '__main__':
+    do_pack()
