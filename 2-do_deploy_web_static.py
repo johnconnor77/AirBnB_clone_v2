@@ -3,13 +3,14 @@
 Fabric script that distributes an archive to your web servers
 """
 
-
 from fabric.api import local, run, env, put
 from datetime import datetime
 import logging
+from os import path
 
 logger = logging.getLogger('ftpuploader')
-env.hosts = ['34.73.17.45 ']
+env.use_ssh_config = True
+env.hosts = ['34.73.17.45']
 env.user = "ubuntu"
 env.key_filename = "~/.ssh/holberton"
 
@@ -36,17 +37,21 @@ def do_deploy(archive_path):
     Return:
         False if the file at the path archive_path doesnt exist
     """
+    if not path.exists(archive_path):
+        return False
 
     file_name = archive_path.split('/')[1]
     file_noext = file_name.split('.')[0]
     try:
         put(archive_path, '/tmp/')
         run('mkdir -p /data/web_static/releases/{}'.format(file_noext))
-        run('tar -xzf /tmp/{} -C /data/web_static/releases/{}'.format(file_name, file_noext))
+        run('tar -xzf /tmp/{} '
+            '-C /data/web_static/releases/{}'.format(file_name, file_noext))
         run('rm /tmp/{}'.format(file_name))
         run('mv -f /data/web_static/releases/{}/web_static/* \
         /data/web_static/releases/{}/'.format(file_noext, file_noext))
-        run('rm -rf /data/web_static/releases/{}/web_static'.format(file_noext))
+        run('rm -rf '
+            '/data/web_static/releases/{}/web_static'.format(file_noext))
         run('rm -rf /data/web_static/current')
         run('ln -s /data/web_static/releases/{} \
         /data/web_static/current'.format(file_noext))
