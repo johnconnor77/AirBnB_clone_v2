@@ -37,6 +37,8 @@ class DBStorage:
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(
             user, pwd, host, db), pool_pre_ping=True)
 
+        self.reload()
+
         if getenv('HBNB_ENV') == "test":
             Base.metadata.drop_all(self.__engine)
 
@@ -48,7 +50,7 @@ class DBStorage:
         db_dict = {}
 
         if cls is not None:
-            input_db = self.__session.query(models.classes[cls]).all()
+            input_db = self.__session.query(cls).all()
             for obj in input_db:
                 # under the hood, sqlalchemy converts entry as input
                 # to objects allowing access to object attributes
