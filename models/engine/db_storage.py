@@ -48,6 +48,8 @@ class DBStorage:
             Or the specified if cls is not none
         """
         db_dict = {}
+        if type(cls) == str:
+            cls = models.classes[cls]
 
         if cls is not None:
             input_db = self.__session.query(cls).all()
